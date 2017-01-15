@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta >
+	<title>倒数计时器</title>
+	<link rel="stylesheet" href="http://lib.sinaapp.com/js/bootstrap/3.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./stylesheets/test.css">
+</head>
+<body>
+	<!-- 定义时间戳，用来显示当前时间和倒计时时间 -->
+	<div class="time-container clearfloat">
+		<!-- 制作一个倒数计时器，倒数计时两个小时 -->
+		<div class="countdown">
+			<mark title="倒数计时器，时间为2小时">倒计时：</mark>
+			<time datetime="02:00:00" id="countdown-time"><strong></strong></time>
+		</div>
+		
+		<!-- 一个时间戳，相当于是一个时钟 -->
+		<div class="timestamp">
+			<mark title="当前时间的时间戳">当前时间：</mark>
+			<time id="time-stamp"><strong></strong></time>
+		</div>
+	</div>
+	
+	<!-- 向左或者是向右的图片拉伸，宽度变大时图片显示出来，（当光标悬浮在另一张图片上的时候） -->
+	<div class="img-flexible-container clearfloat">
+		<!-- 当鼠标悬浮在第一张图片的时候，拉伸显示另一张图片 -->
+		<div class="extend-image">
+			<img class="origin-image" src="./images/litchi/litchi5.jpg" title="这是一张图片，当鼠标放上的时候，会伸缩显示另一张图片">
+		
+			<img class="flexible-image" src="./images/litchi/litchi1.jpg" title="这是用来伸缩显示的图片">
+		</div>
+		
+		<div class="extend-left-image">
+			<img class="left-origin-image" src="./images/litchi/litchi2.jpg" title="origin image">
+			<img class="left-flexible-image" src="./images/litchi/litchi4.jpg" title="flexible image">
+		</div>
+	</div>
+
+	<!-- 制作一个标签页，使用三种方法来制作出来
+	1，使用原生的javascript来制作出切换的效果，
+	2，使用jquery库来制作出相应的切换效果
+	3，使用bootstrap框架来实现标签的切换效果 -->
+	<div class="tab-container" role="multiple-tabs-container">
+		<h2>1,使用原生的javascript来实现的标签的切换效果</h2>
+		<div class="first-tab-container">
+			<ul class="js-tab-lists" role="tabLists">
+				<li class="js-sh active"><div>上海</div></li>
+				<li class="js-gz"><div>广州</div></li>
+				<li class="js-sz"><div>深圳</div></li>
+				<li class="js-bj"><div>北京</div></li>
+				<li class="js-jn"><div>济南</div></li>
+			</ul>
+
+			<div class="js-tab-contents" role="tabLists-contents">
+				<div class="js-sh show-tab-content">上海市是亚热带温润季风性气候</div>
+				<div class="js-gz">广州市是北魏所置州名</div>
+				<div class="js-sz">深圳市是中国消费最高的地方</div>
+				<div class="js-bj">北京市是程序员聚集最多的地方</div>
+				<div class="js-jn">济南市是山东省的省会，它的别称是"泉城"</div>
+			</div>
+		</div>
+
+		<h2>2,使用jquery实现的标签的切换效果，而且在切换的过程中
+		有过渡的时间</h2>
+		<div class="second-tab-container">
+			<ul class="js-tab-lists" role="tabLists">
+				<li class="js-sh active"><div>上海</div></li>
+				<li class="js-gz"><div>广州</div></li>
+				<li class="js-sz"><div>深圳</div></li>
+				<li class="js-bj"><div>北京</div></li>
+				<li class="js-jn"><div>济南</div></li>
+			</ul>
+
+			<div class="js-tab-contents" role="tabLists-contents">
+				<div class="js-sh show-tab-content">上海市是亚热带温润季风性气候</div>
+				<div class="js-gz">广州市是北魏所置州名</div>
+				<div class="js-sz">深圳市是中国消费最高的地方</div>
+				<div class="js-bj">北京市是程序员聚集最多的地方</div>
+				<div class="js-jn">济南市是山东省的省会，它的别称是"泉城"</div>
+			</div>
+		</div>
+
+		<h2>3,使用bootstrap实现的标签的各种切换效果</h2>
+		<div class="bootstrap-tab-container">
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs" role='tabLists' id="bootstrap-tabs">
+				<li role="presentation" class="active"><a href="#shanghai" role="tab" data-toggle="tab">上海</a></li>
+				<li role="presentation"><a href="#guangzhou" role="tab" data-toggle="tab">广州</a></li>
+				<li role="presentation"><a href="#shenzhen" role="tab" data-toggle="tab">深圳</a></li>
+				<li role="presentation"><a href="#beijing" role="tab" data-toggle="tab">北京</a></li>
+				<li role="presentation"><a href="#jinan" role="tab" data-toggle="tab">济南</a></li>
+			</ul>
+
+			<!-- Tabs pane -->
+			<div class="tab-content">
+				<div class="tab-pane active" role="tabpanel" id="shanghai">					上海市是亚热带温润季风性气候
+				</div>
+				<div class="tab-pane" role="tabpanel" id="guangzhou">
+					广州市是北魏所置州名
+				</div>
+				<div class="tab-pane" role="tabpanel" id="shenzhen">
+					深圳市是中国消费最高的地方
+				</div>
+				<div class="tab-pane" role="tabpanel" id="beijing">
+					北京市是程序员聚集最多的地方
+				</div>
+				<div class="tab-pane" role="tabpanel" id="jinan">
+					济南市是山东省的省会，它的别称是"泉城"
+				</div>
+			</div>
+		</div>
+
+		<h2>4,使用display:table, display: table-cell 
+		来定义响应式的 nav tabs</h2>
+		<div class="outer-tbc">
+			<div class="table-container">
+				<ul class="table-lists" role="tabLists">
+					<li class="js-sh active"><div>上海</div></li>
+					<li class="js-gz"><div>广州</div></li>
+					<li class="js-sz"><div>深圳</div></li>
+					<li class="js-bj"><div>北京</div></li>
+					<li class="js-jn"><div>济南</div></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+<script src='http://lib.sinaapp.com/js/jquery/2.0/jquery.min.js'></script>
+<script src="http://lib.sinaapp.com/js/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script>
+	// 时间戳输出对象
+	var timeVesselObj = {};
+
+	// 获取输出倒计时时间的元素
+	timeVesselObj.countdownVessel = getStrong('countdown-time', 'strong');
+	// 获取输出时间戳的元素
+	timeVesselObj.timestampVessel = getStrong('time-stamp', 'strong');
+
+	// 图片对象
+	var imageObj = {};
+
+	imageObj.originImage = getImage('origin-image');
+	imageObj.flexibleImage = getImage('flexible-image');
+
+	imageObj.leftOriginImage = getImage('left-origin-image');
+	imageObj.leftFlexibleImage = getImage('left-flexible-image');
+
+	var endTime = new Date();
+
+	// 将结束时间设置为两小时后， 即设置两个小时的倒计时
+	endTime.setTime( endTime.getTime() + (7200 * 1000) );
+
+	window.onload = function() {
+	
+		// 倒计时时间
+		setInterval(updateCountdownClock, 0);
+
+		// 时间戳
+		setInterval(updateTimestampClock, 0);
+
+		// 伸缩图片
+
+		hover(); // 图片向右伸缩展开 
+		leftHover(); // 图片向左伸缩展开
+
+		// jsTabs() 使用原生js制作的标签页效果
+		jsTabs();
+
+		// jQuery实现标签页的切换效果
+		jqueryTabs();
+
+		
+
+
+	}
+
+	/* 使用原生的javascript实现的标签页，将行为封装到此jsTabs()中 */
+	function jsTabs() {
+		// 标签页标签导航
+		var liSets = document.getElementsByClassName('js-tab-lists')[0]
+			.getElementsByTagName('li');
+
+		// 标签页导航内容
+		var contentSets = document.getElementsByClassName('js-tab-contents')[0].getElementsByTagName('div');
+
+		// 打印出liSets集合中的元素
+		for(var i = 0; i < liSets.length; i ++) {
+
+			/* 当鼠标移动进入标签的时候 */
+			liSets[i].onmouseenter = function(e) {
+				// 首先是将标签页导航内容项全部隐藏
+				for(var j = 0; j < contentSets.length; j ++) {
+					contentSets[j].style.display = 'none';
+				}
+
+				// 将标签中的active选中样式全部清除
+				for(var k = 0; k < liSets.length; k ++) {
+					liSets[k].classList.remove('active');				}
+
+				// 将对应的内容页展示出来 使用的是类的映射
+				document.getElementsByClassName('js-tab-contents')[0]
+									.getElementsByClassName(this.className)[0].style.display = 'block';
+				
+
+				// 标签的样式改变
+				this.classList.add('active');
+			}
+
+			/* 当鼠标移出标签的时候 */
+			liSets[i].onmouseleave = function(e) {
+				// this.classList.remove('active');
+			}
+		}
+	}
+
+	/* 使用jquery库来实现标签页 */
+	function jqueryTabs() {
+		$('.second-tab-container .js-tab-lists li').mouseover(function() {
+
+			$('.second-tab-container .js-tab-contents div.' + $(this).prop('class')).addClass('show-tab-content').siblings().removeClass('show-tab-content');
+
+			$(this).addClass('active')
+				.siblings().removeClass('active');
+		});
+	}
+
+	
+
+	/* 获取显示时间的strong标签，包括计时和倒计时的时间戳 
+	@ param idProp
+	@ param tagName */
+	function getStrong(idProp, tagName) {
+		return document.getElementById(idProp)
+						.getElementsByTagName(tagName)[0];
+	}
+
+	/* 通过相应的类获取图片元素 
+	@ param classname*/
+	function getImage(classname) {
+		return document.getElementsByClassName(classname)[0];
+	}
+
+
+
+	/* 通过增大宽度来显示对应的元素（向左增大）  */
+	function leftHover() {
+
+		imageObj.leftOriginImage.onmouseover = function() {
+			imageObj.leftFlexibleImage.style.width = '700px';
+		}
+
+		imageObj.leftOriginImage.onmouseout = function() {
+			imageObj.leftFlexibleImage.style.width = '0';
+		}
+	}
+
+	/* 通过增大宽度来显示对应的元素（向右增大）  */
+	function hover() {
+		
+
+		imageObj.originImage.onmouseover = function() {
+			imageObj.flexibleImage.style.width = '700px';
+		}
+
+		imageObj.originImage.onmouseout = function() {
+			imageObj.flexibleImage.style.width = '0';
+		}
+	}
+
+	/* 更新时间 (倒计时时间)*/
+	function updateCountdownClock() {
+		var curTime = new Date();
+		// 给定的毫秒数
+		var originTime = endTime.getTime() - curTime.getTime();
+
+		var second = Math.round( originTime / 1000 );
+
+		// 时
+		var hours = parseInt( second / 3600 );
+
+		// 分
+		var minutes = parseInt( ( second - hours * 3600 ) / 60);
+
+		// 秒
+		var seconds = second % 60;
+
+		// 获取time元素内部的strong元素
+		
+
+		var showTime = timeFormat(hours) + ':' + timeFormat(minutes) + ':' + timeFormat(seconds);
+
+		timeVesselObj.countdownVessel.innerHTML = showTime;
+	}
+
+	/* 对时间进行格式化，如果时、分或秒是个位数的时候，在前面加 '0' */
+	function timeFormat(target) {
+		return target < 10 ? '0' + target : target;
+	}
+
+	/* 更新时间 (正常时间戳时间)*/
+	function updateTimestampClock() {
+		
+
+		// 获取当前时间
+		var nowDate = new Date();
+
+		// 获取当前时间的 时、分、秒
+		var hours = nowDate.getHours();
+		var minutes = nowDate.getMinutes();
+		var seconds = nowDate.getSeconds();
+
+		// 转换为固定格式
+		var showTime = timeFormat(hours) + ':' + timeFormat(minutes) + ':' + timeFormat(seconds);
+		timeVesselObj.timestampVessel.innerHTML = showTime;
+	}
+
+	
+</script>
+</body>
+</html>
