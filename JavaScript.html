@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="文档中包含一些JavaScript中的算法">
+	<title>JavaScript中的一些算法</title>
+</head>
+<body>
+<script type="text/javascript">
+	var str = 'abcdefgaaaaaaddda';
+	/** 
+		给定的字符串，计算字符串中出现次数最多的字符，
+		并计算出该字符出现的次数
+	*/
+
+	/* 方法1 */
+	function method1(str) {
+		// 声明对象存储相应字符的个数
+		// 属性是相应的字符，属性值是字符的个数
+		var obj = {}; 
+
+		// 字符串中的单个字符
+		var letter;
+
+		// 结果：所求的字符串中包含最多的字符和该字符的个数
+		var max_key,max_num=0;
+
+		// 对字符串周中的每一个字符进行循环
+		// 存储每一个字符的个数
+		for(var i = 0,len = str.length; i<len; i++){
+
+			letter = str[i];
+			if(!obj[letter]){ // 如果对象中没有该字符作为属性
+
+				obj[letter] = 1; // 设置字符数量的初始值
+
+			}else{
+
+				obj[letter]++; // 字符数量递增
+
+			}
+		}
+
+		for(key in obj){ // 遍历对象
+			if(max_num <obj[key]){
+				max_num = obj[key]; // 最多的字符的数量
+				max_key = key; // 数量最多的那个字符
+			}
+		}
+
+	}
+
+	/* 方法2 */
+	function method2(str) {
+			var strArr = strVar.split('');
+
+			// 数组中存放字符串中的字符，去除重复字符
+		  var newArr = [];
+			strArr.forEach(function(value,index) {
+				var bol = true;
+
+				// 如果数组为空则不会执行内部的语句
+				newArr.forEach(function(v) {
+					if(v == value){
+						bol = false;
+					}
+				})
+
+				if(bol==true){
+					newArr.push(value)
+				}
+
+
+			});
+
+
+			// 可以将字符和字符出现的次数存储到一个对象中
+			// 当在正则表达式中使用变量的时候，就必须使用new 关键字
+			// 创建正则表达式对象
+			var o = {};
+
+			for( var i = 0; i < newArr.length; i ++ ) {
+
+				var targetChar = newArr[i];
+
+				var pattern = new RegExp( targetChar, 'g' );
+
+				o[targetChar] = strVar.match( pattern ).length;
+
+
+			}
+
+
+			// 比较对象的值的大小
+			// 这里是设置里参照的方法来进行比较的
+			var maxElement, max = 0;
+			for (j in o) {
+				if ( o[j] > max ) {
+					max = o[j];
+					maxElement = j;
+				}
+
+			}
+	}
+</script>
+</body>
+</html>
