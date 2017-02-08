@@ -4,10 +4,43 @@
 	<meta charset="UTF-8">
 	<meta name="description" content="文档中包含一些JavaScript中的算法">
 	<title>JavaScript中的一些算法</title>
+	<style>
+		#container {
+			width: 50px;
+			border: 10px solid black;
+			padding: 10px;
+			background: blue;
+			background-clip: padding-box;
+		}
+	</style>
 </head>
 <body>
+<a id="Baidu" href="#">百度</a>
+
+<div id="container">你好</div>
 <script type="text/javascript">
-	var str = 'abcdefgaaaaaaddda';
+	var test = function(e) {
+		// alert(this); // 弹出的是这个a链接的href属性的值
+		console.log(this); // 输出这个a链接的结构代码
+		// e.preventDefault(); // 禁止a链接的默认跳转事件
+	}
+
+
+	// 输出的是a链接这个结构
+	// document.getElementById('Baidu').onclick = test;
+
+	// 此行代码输出的结果是window对象，在全局环境中声明的变量就相当于
+	// 声明的全局变量的一个属性，在这里全局变量是window
+	// document.getElementById('Baidu').onclick = function() { test(); };
+
+	// 输出的是a链接这个结构
+	// document.getElementById('Baidu').onclick = function() { 
+	// 	console.log(this);
+	// };
+
+
+
+	// var str = 'abcdefgaaaaaaddda';
 	/** 
 		给定的字符串，计算字符串中出现次数最多的字符，
 		并计算出该字符出现的次数
@@ -102,6 +135,61 @@
 
 			}
 	}
+
+
+	/*JavaScript中排序算法的底层实现，类似于sort()
+	从小到大排序*/
+	function arrSort( arr ) { 
+		// 使用冒泡排序的方式
+		// 数组中索引元素的对比，就是索引之间的比较
+		// 索引之间的比较构成了一个三角形的结构，使用嵌套循环
+		// 类似于打印99乘法表
+		for (var i = 0; i < arr.length - 1; i ++) { // 控制行
+			for (var j = i + 1; j < arr.length; j ++) { // 控制列
+				// 判断索引元素的大小
+				if (arr[i] > arr[j]) {
+					// 1,元素互换，通过声明一个新的变量来实现
+					// var temp = arr[i];
+					// arr[i] = arr[j];
+					// arr[j] = temp;
+
+					// 2,不声明第三个变量的方式来互换两个元素
+					arr[i] = [arr[j], arr[j] = arr[i] ][0];
+				}
+			}
+		}
+
+		return arr;
+	}
+
+
+	/* 打印99乘法表
+	要求输出的格式也和正常的99乘法表是相同的 */
+	(function print99() {
+		// 外层循环控制行
+		for (var i = 1; i <= 9; i ++) { // 共输出9行
+			// document.write('<br/>');// 输出格式化
+			// 内层循环控制列
+			// 内层循环需要根据行数来控制列数，这样才能输出相应的格式
+			for(var j = 1; j <= i; j ++) { // 每一行的列数根据行数来决定
+				// document.write(j + '*' + i + '=' + j*i + '\t');
+			}
+		}
+
+	})();
+
+	/* 在控制台中输出带有模糊效果的文字 
+	console.log('%cRainbow Text', 
+		'color: transparent; text-shadow: 0 0 3px rgba(0,255,0,.7);font-size: 30px;');*/
+
+	/* 在控制台中输出图片 
+	console.log("\n%c", "padding: 50px 200px; background:url('http://avatar.csdn.net/4/3/F/1_stary1.jpg') no-repeat; background-size: 100px 100px; line-height: 100px;");*/
+
+	
+
+
+
+
 </script>
 </body>
 </html>

@@ -4,8 +4,113 @@
 	<meta charset="UTF-8">
 	<meta name="description" content="前端冷知识集锦, 包括HTML，JS，CSS">
 	<title>前端冷知识集锦</title>
+	<style>
+		/* 垂直居中的样式，但是需要时IE9+ */
+		.center-vertical {
+			positive: relative;
+			top: 50%;
+			transform: translateX(-50%);
+		}
+
+		
+	</style>
 </head>
 <body>
-	
+
+
+<script>
+	// 可以直接在Chrome的地址栏中执行js代码
+	// example:
+	// javascript: console.log('hello js');  // 回车之后再控制台中打印'hello js'
+
+	// 可以直接在Chrome的地址栏中执行html代码
+	// data: text/html, <h1>hello js </h1> // 这将会在文档中输出一个h1标签
+
+	// 将文档变成是可编辑的，类似于notepad
+	// data: text/html, <html contentEditable>
+
+	// 使用contentEditable属性来是整个网页变得可编辑
+	// document.body.contentEditable = 'true';
+
+	/* 利用创建一个a标签来解析URL, 构建一个使用该方法来
+	解析URL各个部分的方法 */
+	function parseURL(url) {
+		// 创建一个a元素
+		var a = document.createElement('a');
+
+		// 将a元素的href属性值设置为传入的参数的值
+		a.href = url;
+
+		return {
+			source: url, // URL本身
+			protocol: a.protocol.replace(':',''), // 协议
+			host: a.hostname, // 主机名
+			port: a.port, // 端口号
+			query: a.search, // 查询部分
+			params: (function() { // 该函数返回请求体，一个对象
+				var ret = {}; // 返回的请求体对象
+
+				// 将url地址中的查询内容，隔离开来，返回的是一个数组
+				// 查询内容的格式：a.search = '?name=bob&age=23'
+				// 通过如下的代码可以将?使用正则表达式替换掉
+				// 并生成一个新的数组 seg = ['name=bob', 'age=23']
+				var seg = a.search.replace(/^\?/,'').split('&');
+
+				var i = 0, s, len = seg.length; // 代码优化
+
+				for (; i < len; i ++) {
+					// 跳过未定义的元素，用来处理稀疏数组
+					if (!seg[i]) continue;
+
+					// 将数组中的元素再一次通过等号分割成新的数组
+					// 只不过新的数组中永远只有两个元素
+					// 例如：s = ['name', 'bob']
+					s = seg[i].split('=');
+
+					// 将属性和值存储到ret对象中
+					ret[ s[0] ] = s[1];
+
+				}
+
+				return ret;
+			})(),
+			// 利用正则表达式切除文件的名字例如： index.html, index.php
+			file: (a.pathname.match(/\/([^\/?#]+)$/i) || [,''])[1],
+			// 求出hash值
+			hash: a.hash.replace('#',''),
+			// 求相对路径
+			relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [,''])[1],
+			// 求pathname得几个片段，将其存放到一个数组中
+			// 例如： /user/index.js放到数组中是[user,index.js]
+			segments: a.pathname.replace(/^\//,'').split('/')
+		}
+	}
+
+
+	/* 所有在HTML中创建了具有ID属性的元素会自动在JavaScript的全局环境中 
+	创建对应的全局变量 html: <div id="sample"></div>*/
+  // console.log(sample); // <div id="sample"></div>
+
+
+
+
+</script>
+
+
+<!-- 加载CDN文件的时候，可以省略掉http标识 -->
+<!-- <script src='//domain.com/path/to/script.js'></script> -->
+
+<!-- 利用script标签保存任意信息 -->
+<script id="template" type='text'>
+	<h1>hello js</h1>
+	<span>hello world</span>
+	this is a test string
+</script>
+
+<!-- 提取script标签中保存的信息 -->
+<script>
+	// var content = document.getElementById('template').innerHTML;
+	// console.log(content);
+</script>
 </body>
 </html>
