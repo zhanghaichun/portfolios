@@ -5,18 +5,45 @@
 	<meta name="description" content="前端冷知识集锦, 包括HTML，JS，CSS">
 	<title>前端冷知识集锦</title>
 	<style>
-		/* 垂直居中的样式，但是需要时IE9+ */
+		/* 垂直居中的样式，但是需要是IE9+的浏览器才支持 */
 		.center-vertical {
 			positive: relative;
 			top: 50%;
 			transform: translateX(-50%);
 		}
-
+		
+		#container {
+			width: 100px;
+			height: 100px;
+			background: url('images/2.jpg') no-repeat;
+			background-size: 20px 20px;
+			/* 使用css运算出背景图像的位置 */
+			background-position: calc(100% - 20px) calc(100% - 20px);
+			border: 2px solid red;
+		}
 		
 	</style>
 </head>
 <body>
 
+<!-- 可以实时编辑的css -->
+<style style='display:block' contentEditable>
+	body {
+		color: blue;
+	}
+</style>
+
+<!-- 创建长宽比固定的元素 -->
+<!-- <div style="width: 100%; position: relative; padding-bottom: 20%; ">
+	<div style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; background-color: green;">
+		这是一个长宽比固定的元素
+	</div>
+</div> -->
+
+<!-- 用于做css运算的容器 #container -->
+<div id="container">
+	
+</div>
 
 <script>
 	// 可以直接在Chrome的地址栏中执行js代码
@@ -90,6 +117,92 @@
 	/* 所有在HTML中创建了具有ID属性的元素会自动在JavaScript的全局环境中 
 	创建对应的全局变量 html: <div id="sample"></div>*/
   // console.log(sample); // <div id="sample"></div>
+
+  /* 生成随机的字符串 */
+  function generateRandomAlphaNum(len) {
+  	var rmdString = ''; // 声明空字符串应用于字符串链接
+
+  	for (; rmdString.length < len; rmdString += Math.random().toString(36).substr(2)) ;
+
+  	return rmdString.substr(0,len);
+  }
+
+  /* 利用位操作符将浮点数转换成整型数 */
+  // a = 12.3 / 2; // 6.15
+
+  // 将浮点数转换成整形数的两类位操作符
+  // a | 0; // 6
+  // ~~a; // 6
+
+  // 位操作符!!可以将任意一个值快速的转换为布尔值
+  // !!window === true;
+
+  /* 重写原生的方法以实现某些功能 例如：alert()
+  每次弹出对话框的时候，记录弹出的次数 */
+  (function() {
+  	var oldAlert = window.alert; // 将alert()方法赋值给一个变量
+
+  	var count = 0; // 声明记录弹出次数的计数器
+
+  	window.alert = function(a) { // 重新定义alert()
+  		// 计数器数值自增
+  		count ++;
+
+  		// 使用预先定义好的变量
+  		oldAlert(a + '\nYou have called alert ' + count + ' times, stop now, it is evil' );
+  	}
+
+
+  })();
+
+  // alert('hello world');
+
+  /* 在控制台中输出模糊不清的文字，通过重写console.log()
+  并使用函数的间接调用 */
+  var _log = console.log; // 声明变量存储原函数
+
+  console.log = function() {
+  	// 间接函数调用
+  	_log.call(console, '%c' + [].slice.call(arguments).join(''), 'color: transparent; text-shadow: 0 0 2px rgba(0,0,0,.5)');
+  }
+
+  /* 通常情况下是在声明第三个变量的情况下交换两个变量的值，
+  但是下面的这种数组的方式，并不需要第三个变量就可以
+  交换两个变量的值 
+  var a = 2, b = 1;
+  a = [b, b = a][0];*/
+
+
+  /* if语句的变形，利用关系运算符&&   */
+  var day = (new Date).getDay() === 0; // 返回bool值
+
+  if (day) {
+  	alert('Today is sunday');
+  }
+
+  // 可以改变成下面的形式
+  day && alert('Today is sunday');
+
+
+  // 正常情况下，如果在if语句中执行一条语句的时候，
+  // 是不必要使用换括号将语句括起来的，但是多条语句
+  // 的执行就必须使用花括号
+  // 使用逗号表达式，可以在不使用花括号的情况下执行多条语句
+  // if (condition) statements 1, statements 2, statements 3;
+
+  /* 禁止别人以iframe加载你的页面 */
+  if (window.location != window.parent.location) {
+  	window.location = window.parent.location
+  }
+
+  // console.table方法可以在控制台中输出表格
+  var data = [{
+  	'name': 'bob',
+  	'age': 25
+  },{
+  	'name': 'evil',
+  	'age': 56
+  }]
 
 
 
