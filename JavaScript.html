@@ -3,48 +3,28 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="description" content="文档中包含一些JavaScript中的算法">
-	<title>JavaScript中的一些算法</title>
+	<title>JavaScript 特性测试页面</title>
 	<style>
-		#container {
-			width: 50px;
-			border: 10px solid black;
-			padding: 10px;
-			background: blue;
-			background-clip: padding-box;
-		}
+	
 	</style>
 </head>
 <body>
-<a id="Baidu" href="#">百度</a>
+<button id="navigate">跳转</button><br/>
+<h2>打印 URI 中的各种元素</h2>
 
-<div id="container">你好</div>
 <script type="text/javascript">
-	var test = function(e) {
-		// alert(this); // 弹出的是这个a链接的href属性的值
-		console.log(this); // 输出这个a链接的结构代码
-		// e.preventDefault(); // 禁止a链接的默认跳转事件
-	}
+ 
+  document.getElementById('navigate').onclick = function() {
+    window.location.href = 'https://www.baidu.com'
+  }
+  
+  
 
-
-	// 输出的是a链接这个结构
-	// document.getElementById('Baidu').onclick = test;
-
-	// 此行代码输出的结果是window对象，在全局环境中声明的变量就相当于
-	// 声明的全局变量的一个属性，在这里全局变量是window
-	// document.getElementById('Baidu').onclick = function() { test(); };
-
-	// 输出的是a链接这个结构
-	// document.getElementById('Baidu').onclick = function() { 
-	// 	console.log(this);
-	// };
-
-
-
-	// var str = 'abcdefgaaaaaaddda';
-	/** 
-		给定的字符串，计算字符串中出现次数最多的字符，
-		并计算出该字符出现的次数
-	*/
+	var str = 'good'
+	
+  // substr 方法的第一个参数指切割字符串的起始位置，第二个参数指组成子字符串的字符数量
+	console.log(str.slice(1, 3))
+	// method1(str)
 
 	/* 方法1 */
 	function method1(str) {
@@ -58,7 +38,7 @@
 		// 结果：所求的字符串中包含最多的字符和该字符的个数
 		var max_key,max_num=0;
 
-		// 对字符串周中的每一个字符进行循环
+		// 对字符串中的每一个字符进行循环
 		// 存储每一个字符的个数
 		for(var i = 0,len = str.length; i<len; i++){
 
@@ -80,6 +60,8 @@
 				max_key = key; // 数量最多的那个字符
 			}
 		}
+		
+		console.log(max_key + ' : ' + max_num)
 
 	}
 
